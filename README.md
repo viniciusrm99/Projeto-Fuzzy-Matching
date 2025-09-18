@@ -1,7 +1,22 @@
-# Projeto: Fuzzy Matching de Produtos
+# 🛠️ Projeto: Fuzzy Matching de Produtos  
 
-Este projeto aplica **fuzzy matching** para padronizar nomes de produtos em uma base de vendas.  
-Ele identifica variações de nomes (erros de digitação, abreviações ou acentuação diferente) e converte para um **produto padrão**, mantendo os valores originais quando a correspondência não é confiável.
+## 📖 Introdução  
+Este projeto tem como objetivo **padronizar nomes de produtos** em uma base de vendas utilizando **fuzzy matching**.  
+
+Em bases reais, é comum encontrar:  
+- 📝 **Erros de digitação** (ex: "Celular Sansung" → "Celular Samsung")  
+- 🔤 **Abreviações** (ex: "TV 42" → "Televisão 42 polegadas")  
+- ✨ **Diferenças de acentuação** (ex: "Pão" → "Pao")  
+
+Essas inconsistências podem atrapalhar análises e relatórios, já que o mesmo produto aparece de várias formas.  
+
+➡️ A solução aqui proposta **encontra correspondências aproximadas** e converte para um **produto padrão**, mas **mantém o valor original** quando a correspondência não é confiável.  
+
+## 🚀 Principais Objetivos  
+- Padronizar os nomes dos produtos.  
+- Melhorar a qualidade dos relatórios e dashboards.  
+- Garantir que variações não prejudiquem a análise de vendas.  
+- Criar um fluxo escalável para rodar em **Pandas**.  
 
 ---
 

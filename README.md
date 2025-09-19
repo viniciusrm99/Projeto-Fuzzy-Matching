@@ -43,8 +43,9 @@ uploaded = files.upload()
 df_base = pd.read_excel("projeto_fuzzy_matching.xlsx", sheet_name="base_vendas")
 
 # Conferindo as primeiras linhas
-print(df_base.head())
+df_base
 ```
+![Print 1](print_1.png)
 
 ## 3️⃣ Preparando a lista de produtos padrão
 
@@ -113,9 +114,11 @@ colunas_final = ['produto', 'produto_padrao'] + [col for col in df_base.columns 
 df_final = df_final[colunas_final]
 
 # Conferindo resultado
-df_final.head(20)
+df_final
 
 ```
+<img width="1913" height="576" alt="image" src="https://github.com/user-attachments/assets/ee0ba59b-9be1-4f53-8027-4c8363de8676" />
+
 ## 📊 Resultados
 
 Após aplicar o fuzzy matching para padronizar os produtos:

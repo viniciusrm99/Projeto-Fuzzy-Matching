@@ -127,4 +127,11 @@ Após aplicar o fuzzy matching para padronizar os produtos:
 - **Qtd de produtos únicos depois do tratamento:** 43  
 - **Redução de produtos distintos:** 32 (42,67% de melhora)
 
-Essa redução mostra claramente que a padronização ajudou a consolidar variações e erros de digitação, deixando a base mais limpa e confiável para análises e dashboards.
+Essa redução mostra claramente que a padronização ajudou a consolidar variações e erros de digitação, deixando a base mais limpa e confiável para análises e dashboards.  
+
+O gráfico abaixo evidencia o **antes e depois**, mostrando como categorias semelhantes foram unificadas, facilitando a análise de vendas e permitindo gerar insights mais precisos e confiáveis.
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f8254572-49d6-4c70-9d4a-a6137fd516dd" width="616" height="337" />
+</p>
+

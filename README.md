@@ -1,5 +1,3 @@
-# 🛠️ Projeto: Fuzzy Matching de Produtos  
-
 ## 📖 Introdução  
 Este projeto tem como objetivo **padronizar nomes de produtos** em uma base de vendas utilizando **fuzzy matching**.  
 
@@ -10,13 +8,12 @@ Em bases reais, é comum encontrar:
 
 Essas inconsistências podem atrapalhar análises e relatórios, já que o mesmo produto aparece de várias formas.  
 
-➡️ A solução aqui proposta **encontra correspondências aproximadas** e converte para um **produto padrão**, mas **mantém o valor original** quando a correspondência não é confiável.  
+➡️ A solução aqui proposta:  
+- **Encontra correspondências aproximadas** e converte para um **produto padrão**, mantendo o valor original quando a correspondência não é confiável.  
+- **Gera um depara automático** de produtos, consolidando variações e erros de digitação.  
+- Pode ser facilmente **replicada em Spark**, permitindo escalabilidade para bases muito maiores.  
 
-## 🚀 Principais Objetivos  
-- Padronizar os nomes dos produtos.  
-- Melhorar a qualidade dos relatórios e dashboards.  
-- Garantir que variações não prejudiquem a análise de vendas.  
-- Criar um fluxo escalável para rodar em **Pandas**.  
+Essa abordagem garante **uma base mais limpa e confiável**, essencial para dashboards, relatórios e análises de vendas.
 
 ---
 
@@ -71,18 +68,14 @@ produtos_padrao_normalizados = [unidecode(p).lower() for p in produtos_padrao]
 
 ```bash
 def mapear_produto_condicional(produto):
-    """
-    Compara o produto com a lista de produtos padrão usando fuzzy matching.
-    Se a melhor correspondência tiver score >= 63, retorna o produto padrão.
-    Caso contrário, mantém o produto original.
-    """
+    # Compara o produto com a lista de produtos padrão usando fuzzy matching. Se a melhor correspondência tiver score >= 63, retorna o produto padrão. Caso contrário, mantém o produto original.
     if not produto or pd.isna(produto):
         return produto  # mantém original se estiver vazio
     
     produto_normalizado = unidecode(produto).lower().strip()
     melhor_match = process.extractOne(produto_normalizado, produtos_padrao_normalizados, scorer=fuzz.token_sort_ratio)
     
-    if melhor_match and melhor_match[1] >= 63:
+    if melhor_match and melhor_match[1] >= 63: # aqui eu defini o melhor score possivel.. percebi que abaixo de 63 o código começava a atrelar produtos de forma errada no depara...
         index = produtos_padrao_normalizados.index(melhor_match[0])
         produto_final = produtos_padrao[index]
         return produto_final
@@ -123,3 +116,12 @@ df_final = df_final[colunas_final]
 df_final.head(20)
 
 ```
+## 📊 Resultados
+
+Após aplicar o fuzzy matching para padronizar os produtos:
+
+- **Qtd de produtos únicos antes do tratamento:** 75  
+- **Qtd de produtos únicos depois do tratamento:** 43  
+- **Redução de produtos distintos:** 32 (42,67% de melhora)
+
+Essa redução mostra claramente que a padronização ajudou a consolidar variações e erros de digitação, deixando a base mais limpa e confiável para análises e dashboards.
